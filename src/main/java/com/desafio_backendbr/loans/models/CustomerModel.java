@@ -8,15 +8,33 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
-@Table(name = "TB_PESSOA")
-public class PersonModel implements Serializable {
+@Table(name = "TB_CUSTOMER")
+public class CustomerModel implements Serializable {
+
+    public CustomerModel(){}
+
+    public CustomerModel(
+        String cpf,
+        Integer age,
+        String name,
+        BigDecimal income,
+        String location
+    ) {
+        this.cpf = cpf;
+        this.age = age;
+        this.name = name;
+        this.income = income;
+        this.location = location;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID personId;
 
-    private Integer age;
+    @Column(unique = true)
     private String cpf;
+
+    private Integer age;
     private String name;
     private BigDecimal income;
     private String location;
@@ -60,7 +78,5 @@ public class PersonModel implements Serializable {
     public void setLocation(String location) {
         this.location = location;
     }
-
-    []
 
 }
